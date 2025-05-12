@@ -1,0 +1,7 @@
+{
+  "name": "abordaje-territorial-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
