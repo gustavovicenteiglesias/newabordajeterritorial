@@ -1,4 +1,4 @@
-export interface Vacunacovid {
+export interface VacunaCovid {
   idVacunaCovid: number;
   nombre: string;
   lastModified: number;
