@@ -14,6 +14,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonNote,
 } from '@ionic/react';
 import { arrowForward, chevronBack, chevronForward } from 'ionicons/icons';
 import { getPagedViviendas } from '../services/ViviendaService';
@@ -23,10 +24,12 @@ const ViviendaList: React.FC = () => {
   const [viviendas, setViviendas] = useState<Vivienda[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [totalViviendas,setTotalViviendas]=useState(0);
 
   const loadData = async () => {
     const res = await getPagedViviendas(page, 20);
     if (res.data.success) {
+      setTotalViviendas(res.data.totalElements)
       setViviendas(res.data.data);
       setTotalPages(res.data.totalPages);
     }
@@ -53,6 +56,12 @@ const ViviendaList: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <IonList>
+          <IonItem>
+            <IonLabel slot="end">Entradas </IonLabel>
+            <IonNote slot="end">{totalViviendas}</IonNote>
+          </IonItem>
+        </IonList>
         <IonList>
           {viviendas.map((v,i) => (
             <IonItem key={i}>
