@@ -24,7 +24,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import ViviendaList from './pages/ViviendaList';
 import IntegranteList from './pages/IntegranteList';
+import ViviendaForm from './pages/ViviendaForm';
 
+import "./App.css";
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -38,6 +40,7 @@ const App: React.FC = () => (
           <Redirect to="/home" />
         </Route> 
         <Route path={"/integrantes/:viviendaId"}><IntegranteList/></Route>
+        <Route path={"/viviendas/:viviendaId"}><ViviendaForm/></Route>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

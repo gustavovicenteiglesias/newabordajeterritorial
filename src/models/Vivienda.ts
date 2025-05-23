@@ -1,5 +1,5 @@
 export interface Vivienda {
-  idViviendas: string;
+  idViviendas: number;
   fecha: string;
   lastModified: number;
   longitud: number;
@@ -21,7 +21,8 @@ export interface Vivienda {
   agenteSanitario: string;
   capsIdCaps: number;
   perros: number;
-  vectoresExisteVectores: number | null;
+  vectoresExixteRoedores: number | null;
   saludAsisteComedor: number | null;
+  barriosIdBarrios:number;
 }
 

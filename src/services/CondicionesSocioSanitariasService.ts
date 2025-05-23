@@ -1,6 +1,7 @@
 import api from '../api/axios';
 import { ApiResponse } from '../types/ApiResponse';
 import { CondicionesSocioSanitarias } from '../models/CondicionesSocioSanitarias';
+import { CondicionesSocioSanitariasI } from '../models/CondicionesSocioSanitariasI';
 
 const BASE_URL = '/condicionessociosanitarias';
 
@@ -8,7 +9,7 @@ export const getAllCondiciones = () =>
   api.get<ApiResponse<CondicionesSocioSanitarias[]>>(`${BASE_URL}`);
 
 export const getCondicionById = (id: number) =>
-  api.get<ApiResponse<CondicionesSocioSanitarias>>(`${BASE_URL}/${id}`);
+  api.get<ApiResponse<CondicionesSocioSanitariasI>>(`${BASE_URL}/${id}`);
 
 export const createCondicion = (data: CondicionesSocioSanitarias) =>
   api.post<ApiResponse<CondicionesSocioSanitarias>>(BASE_URL, data);

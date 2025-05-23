@@ -16,7 +16,7 @@ import { getIntegrantesByViviendaId } from '../services/IntegranteService';
 import { Integrante } from '../models/Integrante';
 
 const IntegranteList: React.FC = () => {
-  const { viviendaId } = useParams<{ viviendaId: string }>();
+  const { viviendaId } = useParams<{ viviendaId: string }>(); 
   const [integrantes, setIntegrantes] = useState<Integrante[]>([]);
   
 

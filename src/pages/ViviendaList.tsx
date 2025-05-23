@@ -64,7 +64,7 @@ const ViviendaList: React.FC = () => {
         </IonList>
         <IonList>
           {viviendas.map((v,i) => (
-            <IonItem key={i}>
+            <IonItem key={i} button routerLink={`/viviendas/${v.idViviendas}`}>
               <IonLabel>
                 <h2>{v.calle} {v.nroCasa}</h2>
                 <p>Modificada: {formatDate(v.lastModified)}</p>
