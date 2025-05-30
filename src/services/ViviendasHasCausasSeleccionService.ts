@@ -1,4 +1,5 @@
 import api from '../api/axios';
+import { ViviendasHasCausas } from '../models/ViviendasHasCausas';
 import { ApiResponse } from '../types/ApiResponse';
 
 
@@ -13,3 +14,5 @@ export const saveCausasByVivienda = (idVivienda: number, causasIds: number[]) =>
 
 export const deleteCausa = (idVivienda: number, idCausa: number) =>
   api.delete(`${BASE_URL}/${idVivienda}/${idCausa}`);
+export const saveCausasSeleccionadas = (idVivienda: number, ids: number[]) =>
+  api.post(`/viviendascausas/${idVivienda}`, ids);

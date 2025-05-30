@@ -1,4 +1,4 @@
-interface ViviendasHasCausas {
+export interface ViviendasHasCausas {
   viviendasIdViviendas: number;
   causasEleccionEfectoresIdCausasEleccionEfectores: number;
   lastModified: number;

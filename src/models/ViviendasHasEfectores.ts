@@ -1,4 +1,4 @@
-interface ViviendasHasEfectores {
+export interface ViviendasHasEfectores {
   viviendasIdViviendas: number;
   efectoresIdEfectores: number;
   lastModified: number;

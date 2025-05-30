@@ -1,4 +1,5 @@
 import api from '../api/axios';
+import { ViviendasHasEfectores } from '../models/ViviendasHasEfectores';
 import { ApiResponse } from '../types/ApiResponse';
 
 
@@ -13,3 +14,6 @@ export const saveEfectoresByVivienda = (idVivienda: number, efectoresIds: number
 
 export const deleteEfector = (idVivienda: number, idEfector: number) =>
   api.delete(`${BASE_URL}/${idVivienda}/${idEfector}`);
+
+export const saveEfectoresSeleccionados = (idVivienda: number, ids: number[]) =>
+  api.post(`/viviendasefectores/${idVivienda}`, ids);

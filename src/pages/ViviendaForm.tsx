@@ -64,6 +64,9 @@ import CondicionesForm from "../components/ViviendaForm/CondicionesForm";
 import PerrosForm from "../components/ViviendaForm/PerrosForm";
 import VectoresForm from "../components/ViviendaForm/VectoresForm";
 import SaludGeneralYSociedad from "../components/ViviendaForm/SaludGeneralYSociedad";
+import AtencionEfectoresForm from "../components/ViviendaForm/AtencionEfectoresForm";
+import { saveEfectoresSeleccionados } from "../services/ViviendasHasEfectoresService";
+import { saveCausasSeleccionadas } from "../services/ViviendasHasCausasSeleccionService";
 const initialValues: any = {
   idViviendas: 0,
   nroManzana: 0,
@@ -103,6 +106,8 @@ const initialValues: any = {
   cantidadAnimales: 0,
   vacunados: 0,
   castrados: 0,
+  efectoresSeleccionados: [] as number[],
+  causasSeleccionadas: [] as number[],
 };
 
 const ViviendaSchema = Yup.object().shape({
@@ -226,13 +231,39 @@ const ViviendaForm = () => {
         condicionesSocioSanitariasIdCondicionesSocioSanitarias: condicionesId,
       });
       console.log(viviendaPayload);
-      /*if (parseInt(viviendaId) === 0) {
-      await createVivienda(viviendaPayload);
-      alert("Vivienda y contacto creados correctamente");
-    } else {
-      await updateVivienda(parseInt(viviendaId), viviendaPayload);
-      alert("Vivienda y contacto actualizados correctamente");
-    }*/
+      // Guardar la vivienda y obtener el ID (en caso de que sea nueva)
+      let viviendaIdGuardada = parseInt(viviendaId);
+      if (viviendaIdGuardada === 0) {
+        const res = await createVivienda({
+          ...viviendaPayload,
+          zoonosisIdZoonosis: zoonosisId,
+          contactosIdContactos: contactoId,
+          condicionesSocioSanitariasIdCondicionesSocioSanitarias: condicionesId,
+        });
+        viviendaIdGuardada = res.data.data.idViviendas;
+        alert("Vivienda creada correctamente");
+      } else {
+        await updateVivienda(viviendaIdGuardada, {
+          ...viviendaPayload,
+          zoonosisIdZoonosis: zoonosisId,
+          contactosIdContactos: contactoId,
+          condicionesSocioSanitariasIdCondicionesSocioSanitarias: condicionesId,
+        });
+        alert("Vivienda actualizada correctamente");
+      }
+
+      // Guardar relaciones con efectores
+      await saveEfectoresSeleccionados(
+        viviendaIdGuardada,
+        values.efectoresSeleccionados
+      );
+
+      // Guardar relaciones con causas de elección
+      await saveCausasSeleccionadas(
+        viviendaIdGuardada,
+        values.causasSeleccionadas
+      );
+      alert("Datos guardados correctamente");
     } catch (error) {
       console.error(error);
       alert("Error al guardar");
@@ -279,7 +310,14 @@ const ViviendaForm = () => {
                   />
                   <PerrosForm values={values} setFieldValue={setFieldValue} />
                   <VectoresForm values={values} setFieldValue={setFieldValue} />
-                  <SaludGeneralYSociedad values={values} setFieldValue={setFieldValue}/>
+                  <SaludGeneralYSociedad
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
+                  <AtencionEfectoresForm
+                    values={values}
+                    setFieldValue={setFieldValue}
+                  />
                 </>
               )}
               <IonButton expand="block" type="submit">
