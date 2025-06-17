@@ -15,6 +15,7 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonList,
+  IonText,
 } from "@ionic/react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -125,6 +126,7 @@ const ViviendaForm = () => {
   const [viviendas, setViviendas] = useState<Vivienda>(initialValues);
   const [barrios, setBarrios] = useState<Barrios[]>([]);
   const [caps, setCaps] = useState<Caps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const id = parseInt(viviendaId);
@@ -147,7 +149,9 @@ const ViviendaForm = () => {
   }, []);
 
   const handleSubmit = async (values: any) => {
+    console.log(values);
     try {
+      setLoading(true);
       const contactoPayload: Contactos = {
         apellido: values.contactoApellido,
         telefono: values.contactoTelefono,
@@ -240,6 +244,7 @@ const ViviendaForm = () => {
           contactosIdContactos: contactoId,
           condicionesSocioSanitariasIdCondicionesSocioSanitarias: condicionesId,
         });
+        console.log(res.data.data.idViviendas)
         viviendaIdGuardada = res.data.data.idViviendas;
         alert("Vivienda creada correctamente");
       } else {
@@ -264,9 +269,11 @@ const ViviendaForm = () => {
         values.causasSeleccionadas
       );
       alert("Datos guardados correctamente");
+      setLoading(false);
     } catch (error) {
       console.error(error);
       alert("Error al guardar");
+      setLoading(false);
     }
   };
 
@@ -318,10 +325,19 @@ const ViviendaForm = () => {
                     values={values}
                     setFieldValue={setFieldValue}
                   />
+                  <IonCard>
+                    <IonCardHeader color="violeta">
+                      <IonCardTitle>Cierre de Encuesta</IonCardTitle>
+                    </IonCardHeader>
+                    <IonItem>
+                      <IonText>Encuesta completa</IonText>
+                    </IonItem>
+                  </IonCard>
                 </>
               )}
+
               <IonButton expand="block" type="submit">
-                Guardar
+                {loading ? "Guardando...." : "Guardar"}
               </IonButton>
             </Form>
           )}

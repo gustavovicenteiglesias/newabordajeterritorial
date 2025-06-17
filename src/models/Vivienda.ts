@@ -22,7 +22,7 @@ export interface Vivienda {
   capsIdCaps: number;
   perros: number;
   vectoresExixteRoedores: number | null;
-  saludAsisteComedor: number | null;
+  saludAsisteComedorl: number | null;
   barriosIdBarrios:number;
 }
 
