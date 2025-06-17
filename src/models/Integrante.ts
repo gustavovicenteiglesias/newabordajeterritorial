@@ -1,32 +1,33 @@
 export interface Integrante {
-  id: number;
-  nombre: string;
-  apellido: string;
-  genero: string;
+  idIntegrantes: number;
+  apellido: string | null;
+  nombre: string | null;
+  genero: string | null;
   edad: number;
-  fechanacimiento: string; // ISO date (yyyy-MM-dd)
-  covid: number;
-  fumador: number;
-  controlSalud: number;
-  pap: string;
-  mamografia: string;
-  embarazo: number;
-  fpp: string; // ISO date
-  edadGestacional: number;
-  controlesPrenatales: number;
-  embarazoRiesgo: number;
-  dni: number;
-  latitud: number;
-  longitud: number;
-  otroproblema: string;
-  idMac: number;
-  idCobertura: number;
-  escolaridad: number;
-  idPension: number;
-  idVacunacion: number;
-  idEmbarazo: number;
-  idCovid: number;
-  idViviendas: number;
-  lastModified: number;
+  fechanacimiento: string; // formato ISO yyyy-MM-dd
+  tuvoCovid: number | null;
+  fumador: number | null;
+  controlSalud: number | null;
+  pap: string | null;
+  mamografia: string | null;
+  embarazo: number | null;
+  fpp: string | null; // formato ISO yyyy-MM-dd
+  edadGestacional: number | null;
+  controlesPrenatales: number | null;
+  embarazoRiesgo: number | null;
+  dni: number | null;
+  latitud: number | null;
+  longitud: number | null;
+  otroproblema: string | null;
+  macIdMac: number | null;
+  coberturaSaludIdCoberturaSalud: number | null;
+  escolaridadIdEscolaridad: number | null;
+  pensionIdPension: number | null;
+  esquemaVacunacionIdEsquemaVacunacion: number | null;
+  finalizacionEmbarazoIdFinalizacionEmbarazo: number | null;
+  vacunaCovidIdVacunaCovid: number | null;
+  viviendasIdViviendas: number | null;
+  lastModified: number; // timestamp (puede ser `string` si llega en ISO)
   sqlDeleted: number;
 }
+
