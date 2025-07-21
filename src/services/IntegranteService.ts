@@ -1,15 +1,21 @@
-import api from '../api/axios';
-import { Integrante } from '../models/Integrante';
-import { ApiResponse } from '../types/ApiResponse';
+import api from "../api/axios";
+import { Integrante } from "../models/Integrante";
+import { ApiResponse } from "../types/ApiResponse";
 
 export const getAllIntegrantes = () =>
-  api.get<ApiResponse<Integrante[]>>('/integrantes/getall');
+  api.get<ApiResponse<Integrante[]>>("/integrantes/getall");
 
 export const getIntegrantesByViviendaId = (id: number) =>
-  api.get<ApiResponse<Integrante[]>>(`/integrantes/findbyIntegrantesbyid/${id}`);
+  api.get<ApiResponse<Integrante[]>>(
+    `/integrantes/findbyIntegrantesbyid/${id}`
+  );
+
+export const buscarporintegrante = (id: number) => 
+  api.get<ApiResponse<Integrante>>(`/integrantes/${id}`);
+
 
 export const createIntegrante = (data: Integrante) =>
-  api.post<ApiResponse<Integrante>>('/integrantes', data);
+  api.post<ApiResponse<Integrante>>("/integrantes", data);
 
 export const updateIntegrante = (id: number, data: Integrante) =>
   api.put<ApiResponse<Integrante>>(`/integrantes/${id}`, data);

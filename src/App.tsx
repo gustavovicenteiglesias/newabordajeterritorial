@@ -27,6 +27,7 @@ import IntegranteList from './pages/IntegranteList';
 import ViviendaForm from './pages/ViviendaForm';
 
 import "./App.css";
+import IntegranteFormPage from './pages/IntegranteFormPage';
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -41,6 +42,8 @@ const App: React.FC = () => (
         </Route> 
         <Route path={"/integrantes/:viviendaId"}><IntegranteList/></Route>
         <Route path={"/viviendas/:viviendaId"}><ViviendaForm/></Route>
+        <Route path="/nuevo/integrantes/:viviendaId/:integrantesid" exact><IntegranteFormPage/></Route>
+        <Route path="/edit/integrantes/:viviendaId/:integrantesid" exact><IntegranteFormPage/></Route>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

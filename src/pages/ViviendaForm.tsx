@@ -262,7 +262,7 @@ const ViviendaForm = () => {
         viviendaIdGuardada,
         values.efectoresSeleccionados
       );
-
+ 
       // Guardar relaciones con causas de elección
       await saveCausasSeleccionadas(
         viviendaIdGuardada,

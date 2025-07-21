@@ -15,10 +15,12 @@ import {
   IonRow,
   IonCol,
   IonNote,
+  IonText
 } from '@ionic/react';
 import { arrowForward, chevronBack, chevronForward } from 'ionicons/icons';
 import { getPagedViviendas } from '../services/ViviendaService';
 import { Vivienda } from '../models/Vivienda';
+import { Link } from 'react-router-dom';
 
 const ViviendaList: React.FC = () => {
   const [viviendas, setViviendas] = useState<Vivienda[]>([]);
@@ -64,10 +66,14 @@ const ViviendaList: React.FC = () => {
         </IonList>
         <IonList>
           {viviendas.map((v,i) => (
-            <IonItem key={i} button routerLink={`/viviendas/${v.idViviendas}`}>
+            <IonItem key={i} >
               <IonLabel>
+                
+                <Link to={`/viviendas/${v.idViviendas}`} style={{textDecoration:"none"}}>
                 <h2>{v.calle} {v.nroCasa}</h2>
                 <p>Modificada: {formatDate(v.lastModified)}</p>
+                </Link>
+               
               </IonLabel>
               <IonButton slot="end" fill="clear" routerLink={`/integrantes/${v.idViviendas}`}>
                 <IonIcon icon={arrowForward} />

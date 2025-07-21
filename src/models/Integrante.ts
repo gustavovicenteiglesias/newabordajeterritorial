@@ -4,7 +4,7 @@ export interface Integrante {
   nombre: string | null;
   genero: string | null;
   edad: number;
-  fechanacimiento: string; // formato ISO yyyy-MM-dd
+  fechanacimiento: string|null; // formato ISO yyyy-MM-dd
   tuvoCovid: number | null;
   fumador: number | null;
   controlSalud: number | null;
